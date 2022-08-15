@@ -45,8 +45,8 @@
 		$border: 1px dashed rgba(0, 0, 0, 0.2);
 		border-right: $border;
 
-		&:first-child {
-			border-left: $border;
+		&:last-child {
+			border-right: none;
 		}
 	}
 }
