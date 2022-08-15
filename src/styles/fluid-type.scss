@@ -1,3 +1,5 @@
+// https://www.sassmeister.com/gist/7f22e44ace49b5124eec
+// https://css-tricks.com/linearly-scale-font-size-with-css-clamp-based-on-the-viewport/
 @use "sass:math";
 
 @mixin fluid-type($properties, $min-vw, $max-vw, $min-value, $max-value) {
