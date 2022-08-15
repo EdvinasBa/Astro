@@ -66,9 +66,9 @@
 import { ref } from 'vue';
 import type { Ref } from 'vue';
 
-// https://docs.netlify.com/forms/setup/
 const formRef: Ref<HTMLFormElement | null> = ref(null);
 
+// https://docs.netlify.com/forms/setup/
 const handleSubmit = () => {
 	const formData: FormData = new FormData(formRef.value);
 	fetch('/', {
