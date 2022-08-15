@@ -7,7 +7,6 @@ _site/
 scripts/smoke/*-main/
 scripts/memory/project/src/pages/
 *.log
-package-lock.json
 .turbo/
 
 # do not commit .env files or any files that end with `.env`
