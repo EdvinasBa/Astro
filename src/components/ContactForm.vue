@@ -2,6 +2,7 @@
 	<form
 		ref="formRef"
 		class="form"
+		data-netlify="true"
 		@submit.prevent="handleSubmit"
 	>
 		<div class="form__input-wrapper">
