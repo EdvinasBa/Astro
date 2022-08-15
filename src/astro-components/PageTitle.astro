@@ -1,0 +1,36 @@
+---
+export interface IProps {
+	title: string;
+	htmlClass?: string;
+}
+
+const { title, htmlClass } = Astro.props as IProps;
+---
+<div class={`title ${htmlClass || ''}`}>
+	<h2 class="title__title heading-xl">{title}</h2>
+</div>
+
+<style lang="scss">
+@import '../styles/grid-columns.scss';
+
+.title {
+	display: grid;
+	align-self: start;
+	border-top: var(--solid-grid-border);
+	border-bottom: var(--solid-grid-border);
+	margin: 32px 0;
+	grid-column: 1/-1;
+	@include grid-columns();
+
+	&__title {
+		padding: 16px 0;
+		margin-right: 1px;
+		background: var(--color-light);
+		grid-column: 2/7;
+
+		@include column-breakpoint() {
+			grid-column: 2 / -2;
+		}
+	}
+}
+</style>

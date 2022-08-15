@@ -1,0 +1,41 @@
+{
+	"extends": [
+		"stylelint-config-html",
+		"stylelint-config-idiomatic-order"
+	],
+	"rules": {
+		"color-named": "never",
+		"font-family-name-quotes": "always-where-required",
+		"function-url-no-scheme-relative": true,
+		"function-url-quotes": "always",
+		"string-quotes": "single",
+		"unit-disallowed-list": [],
+		"max-empty-lines": 2,
+		"no-descending-specificity": true,
+		"no-duplicate-selectors": true,
+		"font-family-no-missing-generic-family-keyword": null,
+		"indentation": "tab",
+		"property-no-unknown": [
+			true,
+			{
+				"ignoreProperties": [
+					"/^lost-/"
+				]
+			}
+		],
+		"selector-pseudo-class-no-unknown": [
+			true,
+			{
+				"ignorePseudoClasses": [
+					"global"
+				]
+			}
+		]
+	},
+	"ignoreFiles": [
+		"node_modules/*",
+		"dist/*"
+	],
+	"defaultSeverity": "error",
+	"customSyntax": "postcss-html"
+}

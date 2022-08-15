@@ -1,0 +1,106 @@
+---
+import ExperienceCard, { ICardProps } from '../astro-components/ExperienceCard.astro';
+
+import Layout from '../layouts/Layout.astro';
+import Grid from '../components/Grid.vue';
+import PageNavigation from '../astro-components/PageNavigation.astro';
+import PageTitle from '../astro-components/PageTitle.astro';
+
+interface IExperience extends ICardProps {
+	type: 'title' | 'card';
+}
+
+const experiences: Array<IExperience> = [
+	{
+		type: 'title',
+		title: 'Work',
+	},
+	{
+		type: 'card',
+		title: 'Frontend developer',
+		company: 'Zyro',
+		dateStart: '2019',
+		dateEnd: 'present',
+		description: 'I was one of the first developers at this company. Worked in cross-functional teams to prototype and build new features using vue.js. Lead a team of people who built new templates for website builder while also improving and building new tools that helped shape how website builder works today.',
+	},
+	{
+		type: 'card',
+		title: 'Frontend developer',
+		company: 'Coffee Friend',
+		dateStart: '2017',
+		dateEnd: '2019',
+		description: 'Developed frontend/backend for main e-commerce websites. Created new projects from scratch.',
+	},
+	{
+		type: 'title',
+		title: 'Conferences',
+	},
+	{
+		type: 'card',
+		dateStart: '2022',
+		title: 'Vue.js Amsterdam',
+	},
+	{
+		type: 'card',
+		dateStart: '2019',
+		title: 'Vue.js Amsterdam',
+	},
+	{
+		type: 'card',
+		dateStart: '2019',
+		title: 'You Gotta Love Frontend',
+	},
+	{
+		type: 'title',
+		title: 'Other',
+	},
+	{
+		type: 'card',
+		title: 'NRD Academy',
+		company: 'NRD',
+		dateStart: '2017',
+		description: 'One of many IT academies organised in Lithuania. I got offered a job at Coffee Friend after strenghtening my frontend skills here.',
+	},
+];
+
+---
+
+<Layout title="edvinasba Portfolio">
+	<Grid class="experience">
+		<PageNavigation currentPageHref="/experience" />
+		{experiences.map((experience) => {
+			if (experience.type === 'title') {
+				return (
+					<PageTitle title={experience.title}/>
+				);
+			}
+			return (
+				<ExperienceCard
+					htmlClass="experience__card"
+					dateStart={experience.dateStart}
+					dateEnd={experience.dateEnd}
+					company={experience.company}
+					title={experience.title}
+					description={experience.description} />
+			);
+		})}
+	</Grid>
+
+</Layout>
+
+<style lang="scss">
+@import '../styles/grid-columns.scss';
+
+:global(.experience__card) {
+	margin-bottom: 32px;
+	grid-column: 2/8;
+
+	@include column-breakpoint() {
+		grid-column: 2/-2;
+	}
+
+	&:last-child {
+		margin-bottom: 64px;
+	}
+}
+</style>

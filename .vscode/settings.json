@@ -1,0 +1,13 @@
+{
+    "stylelint.validate": [
+        "html",
+        "vue",
+        "astro",
+        "css",
+        "scss"
+    ],
+    "editor.codeActionsOnSave": {
+        "source.fixAll": true,
+        "source.fixAll.eslint": true
+    }
+}

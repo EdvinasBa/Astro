@@ -1,0 +1,13 @@
+@mixin column-breakpoint() {
+	@media screen and (max-width: 768px) {
+        @content;
+    }
+}
+
+@mixin grid-columns() {
+	grid-template-columns: repeat(12, 1fr);
+
+	@include column-breakpoint(){
+		grid-template-columns: repeat(6, 1fr);
+	}
+}

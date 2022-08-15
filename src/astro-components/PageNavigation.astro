@@ -1,0 +1,102 @@
+---
+interface IProps {
+	currentPageHref?: string;
+}
+
+const {
+	currentPageHref
+} = Astro.props as IProps;
+
+interface ILink {
+	href: string;
+	text: string;
+}
+
+const LINKS: Array<ILink> = [
+	{
+		href: '/',
+		text: 'edvinasba',
+	},
+	{
+		href: '/experience',
+		text: 'experience',
+	},
+	{
+		href: '/photography',
+		text: 'photography',
+	},
+	{
+		href: '/contact',
+		text: 'contact',
+	},
+];
+---
+
+<div
+	class:list={['navigation', {'navigation--has-active-link' : !!currentPageHref}]}
+>
+	{LINKS.map(({ href, text}) => (
+		<a
+			href={href}
+			class:list={['navigation__link', {'navigation__link--is-active' : href === currentPageHref}]}
+		>
+			{text}
+		</a>
+	))}
+</div>
+
+<style lang="scss">
+.navigation {
+	$this: &;
+	display: flex;
+	flex-direction: row;
+	align-self: start;
+	padding: 16px 40px;
+	font-size: 18px;
+	font-weight: 500;
+	gap: 16px;
+	grid-column: 1/-1;
+
+	grid-row: 1/-1;
+	isolation: isolate;
+	pointer-events: none;
+
+	&:hover {
+		#{$this}__link {
+			&:not(:first-child) {
+				filter: blur(2px);
+				opacity: 1.0;
+			}
+		}
+	}
+
+	&--has-active-link {
+		#{$this}__link {
+			opacity: 0.2;
+		}
+	}
+
+	&__link {
+		display: flex;
+		align-items: center;
+		color: var(--color-dark);
+		pointer-events: all;
+		text-decoration: none;
+		transition: filter 0.2s linear, opacity 0.2s linear;
+
+		&:first-child {
+			margin-right: auto;
+			opacity: 1;
+		}
+		
+		&:hover:not(.s):not(:first-child) {
+			filter: none;
+			transform: skewX(-5deg);
+		}
+
+		&--is-active:not(.s) {
+			opacity: 1.0;
+		}
+	}
+}
+</style>

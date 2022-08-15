@@ -1,0 +1,156 @@
+---
+// eslint-disable-next-line import/no-extraneous-dependencies
+import { renderImg } from 'astro-imagetools/api';
+
+import Layout from '../../layouts/Layout.astro';
+import Grid from '../../components/Grid.vue';
+import PageNavigation from '../../astro-components/PageNavigation.astro';
+import PhotoGallery from '../../components/PhotoGallery.vue';
+
+interface IImage {
+	src: String;
+	left: Number;
+	top: Number;
+	width: Number;
+}
+
+const images: Array<IImage> = [
+	{
+		src: '/photos/audra-pergale/audra-pergale-1.jpg',
+		left: 63,
+		width: 9,
+		top: 11,
+	},
+	{
+		src: '/photos/audra-pergale/audra-pergale-2.jpg',
+		left: 11,
+		width: 9,
+		top: 63,
+	},
+	{
+		src: '/photos/audra-pergale/audra-pergale-3.jpg',
+		left: 47,
+		width: 12,
+		top: 9,
+	},
+	{
+		src: '/photos/audra-pergale/audra-pergale-4.jpg',
+		left: 76,
+		width: 8,
+		top: 76,
+	},
+	{
+		src: '/photos/audra-pergale/audra-pergale-5.jpg',
+		left: 22,
+		width: 8,
+		top: 81,
+	},
+	{
+		src: '/photos/audra-pergale/audra-pergale-6.jpg',
+		left: 74,
+		width: 7,
+		top: 17,
+	},
+	{
+		src: '/photos/audra-pergale/audra-pergale-7.jpg',
+		left: 42,
+		width: 6,
+		top: 53,
+	},
+	{
+		src: '/photos/audra-pergale/audra-pergale-8.jpg',
+		left: 51,
+		width: 10,
+		top: 43,
+	},
+	{
+		src: '/photos/audra-pergale/audra-pergale-9.jpg',
+		left: 77,
+		width: 10,
+		top: 45,
+	},
+	{
+		src: '/photos/audra-pergale/audra-pergale-10.jpg',
+		left: 59,
+		width: 8,
+		top: 68,
+	},
+	{
+		src: '/photos/audra-pergale/audra-pergale-11.jpg',
+		left: 63,
+		width: 10,
+		top: 51,
+	},
+	{
+		src: '/photos/audra-pergale/audra-pergale-12.jpg',
+		left: 31,
+		width: 6,
+		top: 59,
+	},
+	{
+		src: '/photos/audra-pergale/audra-pergale-13.jpg',
+		left: 41,
+		width: 6,
+		top: 74,
+	},
+	{
+		src: '/photos/audra-pergale/audra-pergale-14.jpg',
+		left: 24,
+		width: 7,
+		top: 37,
+	},
+	{
+		src: '/photos/audra-pergale/audra-pergale-15.jpg',
+		left: 28,
+		width: 7,
+		top: 14,
+	},
+	{
+		src: '/photos/audra-pergale/audra-pergale-16.jpg',
+		left: 14,
+		width: 7,
+		top: 23,
+	},
+	{
+		src: '/photos/audra-pergale/audra-pergale-17.jpg',
+		left: 56,
+		width: 7,
+		top: 30,
+	},
+	{
+		src: '/photos/audra-pergale/audra-pergale-18.jpg',
+		left: 38,
+		width: 7,
+		top: 24,
+	},
+];
+const renderedImages = await Promise.all(
+	images.map(({ src }, index) => renderImg({
+		src,
+		alt: index,
+		preload: 'webp',
+		format: 'webp',
+		placeholder: 'dominantColor',
+		breakpoints: [200, 400, 800, 1200],
+		formatOptions: {
+			webp: { quality: 50 },
+		},
+	})),
+);
+---
+
+<Layout title="edvinasba Portfolio">
+	<Grid>
+		<PhotoGallery client:load images={renderedImages} imageData={images} />
+		<PageNavigation class="navigation" currentPageHref="/photography" />
+		<h1>audra festival</h1>
+	</Grid>
+</Layout>
+<style lang="scss">
+h1 {
+	font-size: 128px;
+	grid-area: 1/1/-1/-1;
+	letter-spacing: -0.05em;
+	place-self: center;
+}
+</style>

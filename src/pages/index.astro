@@ -1,0 +1,87 @@
+---
+// eslint-disable-next-line import/no-extraneous-dependencies
+import { Img } from 'astro-imagetools/components';
+import Layout from '../layouts/Layout.astro';
+import Grid from '../components/Grid.vue';
+import PageNavigation from '../astro-components/PageNavigation.astro';
+---
+
+<Layout title="edvinasba Portfolio">
+	<Grid class="grid">
+		<PageNavigation />
+		<div class="header">
+			<h1 class="header__title heading-xl">
+				Hi. I'm Edvinas.
+			</h1>
+			<h4 class="header__subtitle">
+				I'm a frontend developer, photographer <br>
+				based in Kaunas, Lithuania.
+			</h4>
+		</div>
+		<Img
+			src="photos/portrait-split.png"
+			alt="test"
+			format="webp"
+			placeholder="none"/>
+	</Grid>
+</Layout>
+
+<style lang="scss">
+@import '../styles/fluid-type.scss';
+@import '../styles/grid-columns.scss';
+.grid {
+	:global(img) {
+		display: inline-block;
+		overflow: hidden;
+		max-width: 100%;
+		height: auto;
+		align-self: end;
+		grid-column:6/13;
+		grid-row: 1/-1;
+		object-fit: contain;
+
+		@include column-breakpoint() {
+			grid-column: 3/7;
+			grid-row: 2/4;
+		}
+	}
+	@include column-breakpoint() {
+		:global(.grid) {
+			// grid-auto-rows: min-content;
+		}
+	}
+}
+.header {
+	display: grid;
+	@include grid-columns();
+	align-self: center;
+	border-top: var(--solid-grid-border);
+	border-bottom: var(--solid-grid-border);
+	grid-column: 1/-1;
+	grid-row: 1/-1;
+	text-align: left;
+
+	@include column-breakpoint() {
+		grid-row: 2/3;
+	}
+	&__title, &__subtitle {
+		margin-right: 1px;
+		background: var(--color-light);
+		grid-column: 2/6;
+
+		@include column-breakpoint() {
+			grid-column: 2/6;
+		}
+	}
+	&__title {
+		padding: 16px 0;
+	}
+	&__subtitle {
+		padding-bottom: 16px;
+		@include fluid-type(font-size, 400px, 1600px, 16px, 24px);
+		font-family: var(--secondary-font);
+		font-weight: 400;
+		line-height: 1;
+	}
+}
+</style>

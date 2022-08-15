@@ -1,0 +1,49 @@
+---
+export interface ICardProps {
+    title?: string;
+	company?: string;
+	dateStart?: string;
+	dateEnd?: string;
+	description?: string;
+	backgroundColor?: string;
+    htmlClass?: string
+}
+const {
+	title, company, dateStart, dateEnd, description, htmlClass,
+} = Astro.props as ICardProps;
+
+---
+<div class={`card ${htmlClass}`}>
+	<h5 class="card__title heading-l">
+		{ title } { company ? ` - ${company}` : '' }
+	</h5>
+	<h4 class="card__date">
+		{ dateStart } { dateEnd ? `- ${dateEnd}` : '' }
+	</h4>
+	<p class="card__description">
+		{ description }
+	</p>
+</div>
+<style lang="scss">
+@import '../styles/fluid-type.scss';
+
+.card {
+	$this: &;
+
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+
+	&__date {
+		font-family: var(--secondary-font);
+		@include fluid-type(font-size, 400px, 1600px, 16px, 24px);
+		font-weight: 300;
+		grid-area: 1/1/-1/2;
+		line-height: 1;
+	}
+
+	&__description {
+		@include fluid-type(font-size, 400px, 1600px, 13px, 18px);
+	}
+}
+</style>

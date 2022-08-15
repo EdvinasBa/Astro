@@ -1,0 +1,74 @@
+---
+import MouseToy from '../components/MouseToy.vue';
+
+export interface IProps {
+	title: string;
+}
+
+const { title } = Astro.props as IProps;
+---
+
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/x-icon" href="/favicon.ico" />
+	<!-- Font -->
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@100..900&display=swap" rel="stylesheet">
+	<!-- Font end -->
+	<title>{title}</title>
+	</head>
+
+	<body>
+		<slot />
+		<MouseToy client:only />
+		<div id="popup-target"></div>
+	</body>
+
+</html>
+<style lang="scss" is:global>
+@import '../styles/reset.scss';
+@import '../styles/fluid-type.scss';
+
+:root {
+	/* --global-font: 'EB Garamond', serif; */
+	--global-font: 'Heebo', sans-serif;
+	--secondary-font: var(--global-font);
+
+	--color-light: #fbfbfb;
+	--color-dark: #131313;
+	--solid-grid-border: 1px solid rgba(0,0,0,0.2);
+
+	font-variant-ligatures: none;
+}
+
+.heading {
+
+	&-xl {
+		@include fluid-type(font-size, 400px, 1600px, 32px, 96px);
+		font-weight: 600;
+		line-height: 1;
+	}
+	&-l {
+		@include fluid-type(font-size, 400px, 1600px, 18px, 48px);
+
+		letter-spacing: -0.02em;
+		line-height: 1;
+	}
+}
+
+body,
+html {
+	color: var(--color-dark);
+	font-family: var(--global-font);
+}
+
+body {
+	min-height: 100%;
+	background: var(--color-dark);
+}
+</style>

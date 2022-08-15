@@ -1,0 +1,40 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Grid from '../components/Grid.vue';
+import PageNavigation from '../astro-components/PageNavigation.astro';
+import ContactForm from '../components/ContactForm.vue';
+import PageTitle from '../astro-components/PageTitle.astro';
+---
+
+<Layout title="edvinasba Portfolio">
+	<Grid class="grid">
+		<PageNavigation currentPageHref="/contact"/>
+		<PageTitle title="Got a problem to solve?" htmlClass="title"/>
+		<ContactForm client:load class="form"/>
+	</Grid>
+</Layout>
+
+<style lang="scss">
+@import '../styles/grid-columns.scss';
+:global(.grid) {
+	grid-template-rows: auto 1fr;
+}
+.form {
+	align-self: center;
+	border-top: var(--solid-grid-border);
+	border-bottom: var(--solid-grid-border);
+	margin-right: 1px;
+	grid-column: 7/12;
+	grid-row: 2/3;
+
+	@include column-breakpoint() {
+		margin-bottom: 32px;
+		grid-column: 2/-2;
+		grid-row: 3/4;
+	}
+}
+:global(.title:not(.s)) {
+	align-self: center;
+	grid-row: 2/3;
+}
+</style>

@@ -1,0 +1,141 @@
+---
+// eslint-disable-next-line import/no-extraneous-dependencies
+import { renderImg } from 'astro-imagetools/api';
+
+import Layout from '../../layouts/Layout.astro';
+import Grid from '../../components/Grid.vue';
+import PageNavigation from '../../astro-components/PageNavigation.astro';
+import PhotoGallery from '../../components/PhotoGallery.vue';
+
+interface IImage {
+	src: String;
+	left: Number;
+	top: Number;
+	width: Number;
+}
+
+const images: Array<IImage> = [
+	{
+		src: '/photos/streetjam/street-jam-1.jpg',
+		left: 9,
+		width: 5,
+		top: 10,
+	},
+	{
+		src: '/photos/streetjam/street-jam-2.jpg',
+		left: 66,
+		width: 9,
+		top: 7,
+	},
+	{
+		src: '/photos/streetjam/street-jam-3.jpg',
+		left: 43,
+		width: 7,
+		top: 6,
+	},
+	{
+		src: '/photos/streetjam/street-jam-4.jpg',
+		left: 9,
+		width: 8,
+		top: 49,
+	},
+	{
+		src: '/photos/streetjam/street-jam-5.jpg',
+		left: 19,
+		width: 8,
+		top: 78,
+	},
+	{
+		src: '/photos/streetjam/street-jam-6.jpg',
+		left: 81,
+		width: 7,
+		top: 21,
+	},
+	{
+		src: '/photos/streetjam/street-jam-7.jpg',
+		left: 70,
+		width: 6,
+		top: 54,
+	},
+	{
+		src: '/photos/streetjam/street-jam-8.jpg',
+		left: 38,
+		width: 10,
+		top: 53,
+	},
+	{
+		src: '/photos/streetjam/street-jam-9.jpg',
+		left: 54,
+		width: 10,
+		top: 34,
+	},
+	{
+		src: '/photos/streetjam/street-jam-10.jpg',
+		left: 55,
+		width: 8,
+		top: 76,
+	},
+	{
+		src: '/photos/streetjam/street-jam-11.jpg',
+		left: 80,
+		width: 10,
+		top: 66,
+	},
+	{
+		src: '/photos/streetjam/street-jam-12.jpg',
+		left: 32,
+		width: 6,
+		top: 23,
+	},
+	{
+		src: '/photos/streetjam/street-jam-13.jpg',
+		left: 26,
+		width: 6,
+		top: 52,
+	},
+	{
+		src: '/photos/streetjam/street-jam-14.jpg',
+		left: 18,
+		width: 7,
+		top: 25,
+	},
+	{
+		src: '/photos/streetjam/street-jam-15.jpg',
+		left: 21,
+		width: 7,
+		top: 10,
+	},
+];
+const renderedImages = await Promise.all(
+	images.map(({ src }, index) => renderImg({
+		src,
+		alt: index,
+		preload: 'webp',
+		format: 'webp',
+		placeholder: 'dominantColor',
+		breakpoints: [200, 400, 800, 1200],
+		formatOptions: {
+			webp: { quality: 50 },
+		},
+	})),
+);
+---
+
+<Layout title="edvinasba Portfolio">
+	<Grid>
+		<PhotoGallery client:load images={renderedImages} imageData={images} />
+		<PageNavigation class="navigation" currentPageHref="/photography" />
+		<h1>kaunas bmx street jam</h1>
+
+	</Grid>
+</Layout>
+
+<style lang="scss">
+	h1 {
+		font-size: 128px;
+		grid-area: 1/1/-1/-1;
+		letter-spacing: -0.05em;
+		place-self: center;
+		pointer-events: none;
+	}
+</style>
