@@ -47,7 +47,9 @@ const PROJECTS = [
 <style lang="scss">
 @import '../styles/fluid-type.scss';
 @import '../styles/grid-columns.scss';
-
+:global(.grid) {
+	grid-auto-rows: min-content;
+}
 .title {
 	padding: 16px 0;
 	margin-right: 1px;
@@ -71,7 +73,7 @@ const PROJECTS = [
 
 	@include grid-columns();
 	margin: 64px 0;
-	gap: 32px;
+	gap: 32px 0;
 	grid-column: 1/-1;
 
 	@include column-breakpoint() {
