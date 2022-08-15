@@ -5,7 +5,7 @@
 			<div
 				v-for="(image, index) in images"
 				:key="index"
-				class="photo"
+				class="photos__photo"
 				:style="{
 					left:
 						isDragging && index === movedImageIndex
@@ -18,6 +18,7 @@
 					width:
 						(remappedImageData[index]?.width || imageData[index].width )+ '%',
 				}"
+				data-is-zoomable="true"
 				@dragstart.prevent
 				@click="openImageIndex = index"
 				v-html="image.style + image.img"
@@ -166,7 +167,7 @@ const startMovingImage = (index) => {
 		transition: transform-origin 0.5s ease-out;
 	}
 
-	.photo {
+	&__photo {
 		position: absolute;
 		cursor: none;
 		pointer-events: all;
@@ -176,6 +177,9 @@ const startMovingImage = (index) => {
 		&:hover {
 			filter: brightness(1.1);
 			// transform: scale(1.2);
+		}
+		img {
+			pointer-events: none;
 		}
 	}
 }

@@ -3,11 +3,11 @@
 		class="mouse-toy"
 		:class="{
 			'mouse-toy--is-hovering-clickable': isHoveringClickable,
-			'mouse-toy--is-hovering-image': isHoveringImage,
+			'mouse-toy--is-hovering-zoomable': isHoveringZoomable,
 		}"
 	>
 		<div
-			v-if="!isHoveringImage"
+			v-if="!isHoveringZoomable"
 			class="mouse-toy__dot"
 		/>
 		<svg
@@ -63,9 +63,9 @@ const isHoveringClickable = computed<boolean>(() => {
 	return !!target?.closest('a') || !!target?.closest('button');
 });
 
-const isHoveringImage = computed<boolean>(() => {
+const isHoveringZoomable = computed<boolean>(() => {
 	const target = rawMouseEvent.value?.target as HTMLElement;
-	return target?.tagName === 'IMG';
+	return !!target?.dataset.isZoomable;
 });
 
 // The bigger the value the less sensitive it is
@@ -108,7 +108,7 @@ const horizontalDotOffset = computed<string>(
 		opacity: 0.9;
 	}
 
-	&--is-hovering-image {
+	&--is-hovering-zoomable {
 		$hoverSize: 60px;
 		width: $hoverSize;
 		height: $hoverSize;
