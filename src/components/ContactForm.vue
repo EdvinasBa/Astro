@@ -3,6 +3,7 @@
 		ref="formRef"
 		class="form"
 		data-netlify="true"
+		name="Contact"
 		@submit.prevent="handleSubmit"
 	>
 		<div class="form__input-wrapper">
