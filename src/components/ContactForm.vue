@@ -6,6 +6,11 @@
 		name="Contact"
 		@submit.prevent="handleSubmit"
 	>
+		<input
+			type="hidden"
+			name="form-name"
+			value="Contact"
+		>
 		<div class="form__input-wrapper">
 			<label
 				class="form__label"
