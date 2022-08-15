@@ -128,13 +128,8 @@ const renderedImages = await Promise.all(
 	images.map(({ src }, index) => renderImg({
 		src,
 		alt: index,
-		preload: 'webp',
-		format: 'webp',
 		placeholder: 'dominantColor',
 		breakpoints: [200, 400, 800, 1200],
-		formatOptions: {
-			webp: { quality: 50 },
-		},
 	})),
 );
 ---
