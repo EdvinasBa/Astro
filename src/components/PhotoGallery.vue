@@ -30,10 +30,10 @@
 		<Popup
 			@click-next="openNextImage"
 			@click-previous="openPreviousImage"
+			@click-close="closePopup"
 		>
 			<div
 				class="popup-image"
-				@click="openImageIndex = null"
 				v-html="images[openImageIndex].img"
 			/>
 		</Popup>
@@ -92,11 +92,17 @@ const percentageFromScreenTop = computed<string>(() => {
 
 // #region Popup logic
 const openImageIndex: Ref<number> = ref(null);
+
 const openNextImage = () => {
 	openImageIndex.value += 1;
 };
+
 const openPreviousImage = () => {
 	openImageIndex.value -= 1;
+};
+
+const closePopup = () => {
+	openImageIndex.value = null;
 };
 
 // #endregion
@@ -132,6 +138,7 @@ const startMovingImage = (index) => {
 
 .popup-image {
 	grid-column: 2/3;
+	grid-row: 1/-1;
 	user-select: none;
 
 	img {

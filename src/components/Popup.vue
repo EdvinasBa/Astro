@@ -3,25 +3,56 @@
 		<div
 			class="popup"
 		>
-			<div
+			<button
 				class="popup__previous-button"
+				title="Go to previous"
 				@click="$emit('click-previous')"
-			>
-				previous
-			</div>
+			/>
 			<slot />
-			<div
+			<button
 				class="popup__next-button"
+				title="Go to next"
 				@click="$emit('click-next')"
+			/>
+			<button
+				class="popup__close-button heading-l"
+				title="Close popup"
+				@click="$emit('click-close')"
 			>
-				next
-			</div>
+				close
+			</button>
 		</div>
 	</Teleport>
 </template>
 
 <script setup lang="ts">
-defineEmits(['click-next', 'click-previous', 'close']);
+import { onMounted, onUnmounted } from 'vue';
+
+const emit = defineEmits(['click-next', 'click-previous', 'click-close']);
+
+const handleNavigation = (event: KeyboardEvent) => {
+	switch (event.key) {
+	case 'ArrowLeft':
+		emit('click-previous');
+		break;
+	case 'ArrowRight':
+		emit('click-next');
+		break;
+	case 'Escape':
+		emit('click-close');
+		break;
+	default:
+		break;
+	}
+};
+
+onMounted(() => {
+	document.addEventListener('keydown', handleNavigation);
+});
+
+onUnmounted(() => {
+	document.removeEventListener('keydown', handleNavigation);
+});
 </script>
 
 <style lang="scss" scoped>
@@ -35,14 +66,23 @@ defineEmits(['click-next', 'click-previous', 'close']);
 	height: 100%;
 	padding: 64px;
 	background: rgba(255,255,255,1);
-	cursor: zoom-out;
 	grid-template-columns: 1fr auto 1fr;
 	grid-template-rows: 100%;
 	place-content: center;
 
 	$this: &;
 
-	&:where(.img,#{$this}__previous-button,.next) {
+	&__close-button {
+		align-self: start;
+		cursor: pointer;
+		grid-column: 1/-1;
+		justify-self: end;
+	}
+
+	&__previous-button, &__next-button, &__close-button {
+		border: none;
+		appearance: none;
+		background: none;
 		grid-row: 1/-1;
 	}
 
