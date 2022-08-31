@@ -2,6 +2,7 @@
 import Layout from '../layouts/Layout.astro';
 import Grid from '../components/Grid.vue';
 import PageNavigation from '../astro-components/PageNavigation.astro';
+import PageTitle from '../astro-components/PageTitle.astro';
 
 const PROJECTS = [
 	{
@@ -30,9 +31,9 @@ const PROJECTS = [
 <Layout title="edvinasba Portfolio">
 	<Grid class="grid'">
 		<PageNavigation class="navigation" currentPageHref="/photography" />
-		<div class="title__container">
-			<h1 class="title heading-xl">Photography projects</h1>
-		</div>
+
+		<PageTitle title="Photography projects" htmlClass="title"/>
+
 		<div class="projects">
 			{PROJECTS.map((project, index) => (
 				<a href={project.link} class="projects__project">
