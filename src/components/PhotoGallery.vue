@@ -26,7 +26,7 @@
 		</div>
 	</div>
 
-	<template v-if="!!openImageIndex">
+	<template v-if="images[openImageIndex]">
 		<Popup
 			@click-next="openNextImage"
 			@click-previous="openPreviousImage"
@@ -36,6 +36,7 @@
 				class="popup-image"
 				v-html="images[openImageIndex].img"
 			/>
+			{{ openImageIndex+1 }} / {{ images.length }}
 		</Popup>
 	</template>
 </template>
