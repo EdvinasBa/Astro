@@ -147,10 +147,14 @@ const renderedImages = await Promise.all(
 	</Grid>
 </Layout>
 <style lang="scss">
+@import '../../styles/fluid-type.scss';
+
 h1 {
-	font-size: 128px;
+	@include fluid-type(font-size, 400px, 1600px, 32px, 128px);
 	grid-area: 1/1/-1/-1;
 	letter-spacing: -0.05em;
 	place-self: center;
+	pointer-events: none;
+	text-align: center;
 }
 </style>

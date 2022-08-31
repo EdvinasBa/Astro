@@ -126,16 +126,18 @@ const renderedImages = await Promise.all(
 		<PhotoGallery client:load images={renderedImages} imageData={images} />
 		<PageNavigation client:load class="navigation" currentPageHref="/photography" />
 		<h1>kaunas bmx street jam</h1>
-
 	</Grid>
 </Layout>
 
 <style lang="scss">
-	h1 {
-		font-size: 128px;
-		grid-area: 1/1/-1/-1;
-		letter-spacing: -0.05em;
-		place-self: center;
-		pointer-events: none;
-	}
+@import '../../styles/fluid-type.scss';
+
+h1 {
+	@include fluid-type(font-size, 400px, 1600px, 32px, 128px);
+	grid-area: 1/1/-1/-1;
+	letter-spacing: -0.05em;
+	place-self: center;
+	pointer-events: none;
+	text-align: center;
+}
 </style>
