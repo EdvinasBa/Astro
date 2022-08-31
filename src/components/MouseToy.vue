@@ -93,10 +93,14 @@ const horizontalDotOffset = computed<string>(
 	height: $size;
 	align-items: center;
 	justify-content: center;
+	border: 1px solid var(--color-light);
 	backdrop-filter: invert(1);
+	@supports not (backdrop-filter: invert(1)) {
+		background: rgba(0,0,0,0.8);
+	}
+	// background: red;
 	border-radius: $size;
 	border-radius: 999px;
-	outline: 1px solid var(--color-light);
 	pointer-events: none;
 	// Center on mouse pointer
 	transform: translate(-50%, -50%);
