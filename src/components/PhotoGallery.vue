@@ -64,9 +64,12 @@ const { mouseX, mouseY } = useMousePosition();
 const screenWidth: Ref<number> = ref(null);
 const screenHeight: Ref<number> = ref(null);
 
+const scale: Ref<number> = ref(1);
+
 onMounted(() => {
 	screenWidth.value = window.innerWidth;
 	screenHeight.value = window.innerHeight;
+	scale.value = 2;
 });
 
 // Default percentages to top right corner of screen since when you enter the page
@@ -168,10 +171,10 @@ const startMovingImage = (index) => {
 
 	&__inner {
 		grid-area: 1/1/-1/-1;
-		transform: scale(2);
+		transform: scale(v-bind(scale));
 		transform-origin: v-bind(percentageFromScreenLeft)
 			v-bind(percentageFromScreenTop);
-		transition: transform-origin 0.5s ease-out;
+		transition: transform-origin 0.5s ease-out, transform 0.25s ease-out 0s;
 	}
 
 	&__photo {
