@@ -1,14 +1,14 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Grid from '../components/Grid.vue';
-import PageNavigation from '../astro-components/PageNavigation.astro';
+import PageNavigation from '../components/PageNavigation.vue';
 import ContactForm from '../components/ContactForm.vue';
 import PageTitle from '../astro-components/PageTitle.astro';
 ---
 
 <Layout title="edvinasba Portfolio">
 	<Grid class="grid">
-		<PageNavigation currentPageHref="/contact"/>
+		<PageNavigation client:load currentPageHref="/contact"/>
 		<PageTitle title="Got a problem to solve?" htmlClass="title"/>
 		<ContactForm client:load class="form"/>
 	</Grid>

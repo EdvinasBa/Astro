@@ -81,6 +81,8 @@ const horizontalDotOffset = computed<string>(
 );
 </script>
 <style lang="scss" scoped>
+@import '../styles/grid-columns.scss';
+
 .mouse-toy {
 	$size: 20px;
 	position: absolute;
@@ -100,6 +102,10 @@ const horizontalDotOffset = computed<string>(
 	transform: translate(-50%, -50%);
 	transition: left 0.2s ease-out, top 0.2s ease-out, width 0.1s linear,
 		height 0.1s linear, opacity 0.1s linear;
+
+	@include column-breakpoint() {
+		display: none;
+	}
 
 	&--is-hovering-clickable {
 		$hoverSize: 60px;

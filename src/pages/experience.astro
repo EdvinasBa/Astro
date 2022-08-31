@@ -3,7 +3,7 @@ import ExperienceCard, { ICardProps } from '../astro-components/ExperienceCard.a
 
 import Layout from '../layouts/Layout.astro';
 import Grid from '../components/Grid.vue';
-import PageNavigation from '../astro-components/PageNavigation.astro';
+import PageNavigation from '../components/PageNavigation.vue';
 import PageTitle from '../astro-components/PageTitle.astro';
 
 interface IExperience extends ICardProps {
@@ -67,7 +67,7 @@ const experiences: Array<IExperience> = [
 
 <Layout title="edvinasba Portfolio">
 	<Grid class="experience">
-		<PageNavigation currentPageHref="/experience" />
+		<PageNavigation client:load  currentPageHref="/experience" />
 		{experiences.map((experience) => {
 			if (experience.type === 'title') {
 				return (

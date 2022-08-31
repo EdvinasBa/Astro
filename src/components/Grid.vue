@@ -19,7 +19,7 @@
 .grid-container {
 	display: grid;
 	min-height: 100%;
-	padding: 4vh 3vw;
+	padding: var(--container-padding);
 	background: var(--color-dark);
 }
 
@@ -35,7 +35,7 @@
 
 	&__background {
 		background: var(--color-light);
-		border-radius: 16px;
+		border-radius: var(--container-border-radius);
 		pointer-events: none;
 		transition: all 0.05s ease-out;
 		@include grid-columns();

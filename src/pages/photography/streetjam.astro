@@ -4,7 +4,7 @@ import { renderImg } from 'astro-imagetools/api';
 
 import Layout from '../../layouts/Layout.astro';
 import Grid from '../../components/Grid.vue';
-import PageNavigation from '../../astro-components/PageNavigation.astro';
+import PageNavigation from '../../components/PageNavigation.vue';
 import PhotoGallery from '../../components/PhotoGallery.vue';
 
 interface IImage {
@@ -124,7 +124,7 @@ const renderedImages = await Promise.all(
 <Layout title="edvinasba Portfolio">
 	<Grid>
 		<PhotoGallery client:load images={renderedImages} imageData={images} />
-		<PageNavigation class="navigation" currentPageHref="/photography" />
+		<PageNavigation client:load class="navigation" currentPageHref="/photography" />
 		<h1>kaunas bmx street jam</h1>
 
 	</Grid>

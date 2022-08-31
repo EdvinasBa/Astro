@@ -3,12 +3,12 @@
 import { Img } from 'astro-imagetools/components';
 import Layout from '../layouts/Layout.astro';
 import Grid from '../components/Grid.vue';
-import PageNavigation from '../astro-components/PageNavigation.astro';
+import PageNavigation from '../components/PageNavigation.vue';
 ---
 
 <Layout title="edvinasba Portfolio">
 	<Grid class="grid">
-		<PageNavigation />
+		<PageNavigation client:load />
 		<div class="header">
 			<h1 class="header__title heading-xl">
 				Hi. I'm Edvinas.
