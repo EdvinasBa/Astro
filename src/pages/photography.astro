@@ -79,16 +79,18 @@ const PROJECTS = [
 	@include column-breakpoint() {
 		gap: 16px;
 	}
+
 	&__project {
-		display: flex;
 		overflow: hidden;
-		align-items: center;
-		align-self: start;
+		padding: 16px;
 		border-top: var(--solid-grid-border);
 		border-bottom: var(--solid-grid-border);
+		margin-right: 1px;
+		aspect-ratio: 1;
+		
+		background: var(--color-light);
 		color: var(--color-dark);
-		gap: 8px;
-		grid-column: 3 / span 4;
+		grid-column: 3 / span 3;
 		text-decoration: none;
 		transition: color 0.1s linear, background 0.05s linear;
 
