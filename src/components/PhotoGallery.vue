@@ -151,6 +151,10 @@ const startMovingImage = (index) => {
 		padding: 64px;
 		object-fit: contain;
 	}
+
+	@include column-breakpoint() {
+		padding: 16px;
+	}
 }
 
 // Design references:
@@ -170,12 +174,25 @@ const startMovingImage = (index) => {
 	grid-area: 1/1/-1/-1;
 	pointer-events: none;
 
+	@include column-breakpoint() {
+		max-width: unset;
+		max-height: unset;
+		padding: 64px 32px;
+	}
+
 	&__inner {
 		grid-area: 1/1/-1/-1;
 		transform: scale(v-bind(scale));
 		transform-origin: v-bind(percentageFromScreenLeft)
 			v-bind(percentageFromScreenTop);
 		transition: transform-origin 0.5s ease-out, transform 0.25s ease-out 0s;
+
+		@include column-breakpoint() {
+			display: flex;
+			flex-direction: column;
+			gap: 32px;
+			transform: none;
+		}
 	}
 
 	&__photo {
@@ -191,6 +208,14 @@ const startMovingImage = (index) => {
 		}
 		img {
 			pointer-events: none;
+		}
+
+		@include column-breakpoint() {
+			position: static;
+			right: 0;
+			// height: 100% !important;
+			left: 0;
+			width: 100% !important;
 		}
 	}
 }
