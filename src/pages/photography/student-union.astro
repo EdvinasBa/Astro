@@ -1,0 +1,143 @@
+---
+// eslint-disable-next-line import/no-extraneous-dependencies
+import { renderImg } from 'astro-imagetools/api';
+
+import Layout from '../../layouts/Layout.astro';
+import Grid from '../../components/Grid.vue';
+import PageNavigation from '../../components/PageNavigation.vue';
+import PhotoGallery from '../../components/PhotoGallery.vue';
+
+interface IImage {
+	src: String;
+	left: Number;
+	top: Number;
+	width: Number;
+}
+
+const images: Array<IImage> = [
+	{
+		src: '/photos/student-union/student-union-1.jpg',
+		left: 9,
+		width: 5,
+		top: 10,
+	},
+	{
+		src: '/photos/student-union/student-union-2.jpg',
+		left: 66,
+		width: 9,
+		top: 7,
+	},
+	{
+		src: '/photos/student-union/student-union-3.jpg',
+		left: 43,
+		width: 7,
+		top: 6,
+	},
+	{
+		src: '/photos/student-union/student-union-4.jpg',
+		left: 9,
+		width: 8,
+		top: 49,
+	},
+	{
+		src: '/photos/student-union/student-union-5.jpg',
+		left: 19,
+		width: 8,
+		top: 78,
+	},
+	{
+		src: '/photos/student-union/student-union-6.jpg',
+		left: 81,
+		width: 7,
+		top: 21,
+	},
+	{
+		src: '/photos/student-union/student-union-7.jpg',
+		left: 70,
+		width: 6,
+		top: 54,
+	},
+	{
+		src: '/photos/student-union/student-union-8.jpg',
+		left: 38,
+		width: 10,
+		top: 53,
+	},
+	{
+		src: '/photos/student-union/student-union-9.jpg',
+		left: 54,
+		width: 10,
+		top: 34,
+	},
+	{
+		src: '/photos/student-union/student-union-10.jpg',
+		left: 55,
+		width: 8,
+		top: 76,
+	},
+	{
+		src: '/photos/student-union/student-union-11.jpg',
+		left: 80,
+		width: 10,
+		top: 66,
+	},
+	{
+		src: '/photos/student-union/student-union-12.jpg',
+		left: 32,
+		width: 6,
+		top: 23,
+	},
+	{
+		src: '/photos/student-union/student-union-13.jpg',
+		left: 26,
+		width: 6,
+		top: 52,
+	},
+	{
+		src: '/photos/student-union/student-union-14.jpg',
+		left: 18,
+		width: 7,
+		top: 25,
+	},
+	{
+		src: '/photos/student-union/student-union-15.jpg',
+		left: 21,
+		width: 7,
+		top: 10,
+	},
+];
+const renderedImages = await Promise.all(
+	images.map(({ src }, index) => renderImg({
+		src,
+		alt: index,
+		preload: 'webp',
+		format: 'webp',
+		placeholder: 'dominantColor',
+		breakpoints: [200, 400, 800, 1200, 1600, 1800, 2000, 2200],
+		formatOptions: {
+			webp: { quality: 80 },
+		},
+	})),
+);
+---
+
+<Layout title="edvinasba Portfolio">
+	<Grid>
+		<PhotoGallery client:load images={renderedImages} imageData={images} />
+		<PageNavigation client:load class="navigation" currentPageHref="/photography" />
+		<h1>kaunas bmx street jam</h1>
+	</Grid>
+</Layout>
+
+<style lang="scss">
+@import '../../styles/fluid-type.scss';
+
+h1 {
+	@include fluid-type(font-size, 400px, 1600px, 32px, 128px);
+	grid-area: 1/1/-1/-1;
+	letter-spacing: -0.05em;
+	place-self: center;
+	pointer-events: none;
+	text-align: center;
+}
+</style>
